@@ -8,6 +8,8 @@
 ## mt$setinv(NULL)
 ## mt$get() %*% cacheSolve(mt)
 
+## This function will save matrix and inversion of the matrix for cache.
+## And it returns setter and getter for user interface
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -22,9 +24,10 @@ makeCacheMatrix <- function(x = matrix()) {
        getinv = getinv)
 }
 
+## This function call the inversion getter function of x.
+## And if there are no inversion value, make and cache it.
+## And finally returns inversion matrix of x.
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  
   inv <- x$getinv()
   if(!is.null(inv)) {
     message("getting cached data")
